@@ -1,0 +1,11 @@
+name = "fde-williamrthomas"
+compatibility_date = "2024-11-12"
+pages_build_output_dir = "./dist"
+
+# Secrets to set on Cloudflare Pages (NOT committed):
+#   wrangler pages secret put SITE_PASSWORD --project-name=fde-williamrthomas
+#   wrangler pages secret put ANTHROPIC_API_KEY --project-name=fde-williamrthomas
+#   wrangler pages secret put SESSION_SECRET --project-name=fde-williamrthomas
+
+# Or set them via the Cloudflare dashboard:
+# Pages -> fde-williamrthomas -> Settings -> Environment variables -> Production

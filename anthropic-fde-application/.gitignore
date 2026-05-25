@@ -1,0 +1,31 @@
+# Dependencies
+**/node_modules/
+
+# Build artifacts
+**/dist/
+**/.astro/
+**/.wrangler/
+
+# Secrets — never commit these
+**/.dev.vars
+**/.env
+**/.env.local
+**/.env.*.local
+
+# LibreOffice / preview artifacts from local PDF generation (not part of the repo)
+.~lock.*
+*.tmp
+lu*.tmp
+rpv-*.jpg
+rpreview-*.jpg
+preview-*.jpg
+preview2-*.jpg
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp

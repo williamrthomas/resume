@@ -1,0 +1,380 @@
+{
+  "$schema": "https://schemas.robotics.press/application/v1",
+  "candidate": {
+    "name": "William R. Thomas",
+    "location": "Rockport, Maine",
+    "open_to_relocation": true,
+    "email": "william.r.thomas@gmail.com",
+    "phone": "+1-207-951-8613",
+    "links": {
+      "linkedin": "https://www.linkedin.com/in/wthomasoh/",
+      "github": "https://github.com/williamrthomas",
+      "substack": "https://williamrthomas.substack.com",
+      "demo_project": "https://robotics.press"
+    }
+  },
+  "application": {
+    "company": "Anthropic",
+    "role": "Forward Deployed Engineer, Applied AI",
+    "job_url": "https://job-boards.greenhouse.io/anthropic/jobs/4985877008",
+    "salary_band_usd": [200000, 300000],
+    "office_locations": ["Boston, MA", "New York City, NY", "Seattle, WA", "San Francisco, CA", "Washington, DC"]
+  },
+  "requirements": [
+    {
+      "id": "r.tenure",
+      "text": "3+ years in a technical customer-facing role (FDE, SWE w/ consulting, or technical founder)",
+      "priority": "must-have",
+      "satisfied_by": ["e.athena.platform-ops", "e.consulting.thomas", "e.consulting.edit-systems", "e.founder.q5-labs", "e.founder.bjj-weekly"]
+    },
+    {
+      "id": "r.production-llm",
+      "text": "Production LLM experience: prompt engineering, agent development, evaluation frameworks, deployment at scale",
+      "priority": "must-have",
+      "satisfied_by": ["e.athena.federated-ai-operating-model", "e.athena.ai-case-intelligence", "e.athena.agentic-dev-operating-model", "e.robotics-press.agents", "e.robotics-press.llm-traces"]
+    },
+    {
+      "id": "r.python",
+      "text": "Strong programming in Python, ideally a second language (TypeScript / Java)",
+      "priority": "must-have",
+      "satisfied_by": ["e.robotics-press.python-stack", "e.athena.governed-analytics-platform", "e.healthcare-data-training", "e.postiz-app"]
+    },
+    {
+      "id": "r.shipped-production-apps",
+      "text": "Experience shipping production applications",
+      "priority": "must-have",
+      "satisfied_by": ["e.robotics-press.production-stats", "e.athena.governed-analytics-platform", "e.athena.local-first-packages", "e.founder.q5-labs"]
+    },
+    {
+      "id": "r.high-agency",
+      "text": "High agency, navigates ambiguity in complex organizations",
+      "priority": "must-have",
+      "satisfied_by": ["e.athena.pop-health-greenfield", "e.athena.dataview-operationalization", "e.athena.federated-ai-operating-model", "e.athena.continuity-work", "e.founder.q5-labs"]
+    },
+    {
+      "id": "r.cross-org-collab",
+      "text": "High cooperation mindset for cross-organizational collaboration",
+      "priority": "must-have",
+      "satisfied_by": ["e.athena.platform-ops", "e.athena.federated-ai-operating-model", "e.athena.ai-enablement-communities"]
+    },
+    {
+      "id": "r.safe-ai-passion",
+      "text": "Passion for advancing safe, beneficial AI through creative technical applications",
+      "priority": "must-have",
+      "satisfied_by": ["e.substack.posts", "e.healthcare-data-training", "e.linkedin.top-voices"]
+    },
+    {
+      "id": "r.strong-communication",
+      "text": "Strong communication; discovery with customers and conveying technical concepts to diverse stakeholders",
+      "priority": "must-have",
+      "satisfied_by": ["e.athena.source-first-publishing", "e.substack.posts", "e.jiu-jitsu-magazine.4-articles", "e.teaching.cad-cam", "e.coaching.25-years"]
+    },
+    {
+      "id": "r.healthcare-vertical",
+      "text": "Background in financial services, healthcare/life sciences, or another enterprise vertical (plus)",
+      "priority": "nice-to-have",
+      "satisfied_by": ["e.athena.platform-ops", "e.athena.pop-health-greenfield", "e.athena.aco-support", "e.healthcare-data-training"]
+    },
+    {
+      "id": "r.enterprise-it",
+      "text": "Experience with enterprise IT systems and/or AI deployment patterns (plus)",
+      "priority": "nice-to-have",
+      "satisfied_by": ["e.athena.platform-ops", "e.athena.governed-analytics-platform", "e.mbna.lan-tech", "e.mid-coast.tech-coordinator", "e.consulting.thomas"]
+    },
+    {
+      "id": "r.fde-or-services",
+      "text": "Experience working as an FDE or in a professional services context (plus)",
+      "priority": "nice-to-have",
+      "satisfied_by": ["e.athena.platform-ops", "e.consulting.thomas", "e.consulting.edit-systems"]
+    },
+    {
+      "id": "r.former-founder",
+      "text": "Former technical founders are encouraged to apply",
+      "priority": "encouraged",
+      "satisfied_by": ["e.founder.q5-labs", "e.founder.bjj-weekly", "e.consulting.thomas", "e.consulting.edit-systems", "e.founder.niw-services"]
+    },
+    {
+      "id": "r.deliver-mcp-subagents-skills",
+      "text": "Deliver technical artifacts for customers: MCP servers, sub-agents, agent skills, production workflows",
+      "priority": "must-have",
+      "satisfied_by": ["e.robotics-press.agents", "e.robotics-press.tool-registry", "e.athena.agentic-dev-operating-model", "e.athena.reusable-ai-data-assets"]
+    },
+    {
+      "id": "r.codify-patterns",
+      "text": "Identify and codify repeatable deployment patterns; contribute insights back to Product and Engineering",
+      "priority": "must-have",
+      "satisfied_by": ["e.athena.federated-ai-operating-model", "e.athena.governed-analytics-platform", "e.athena.local-first-packages", "e.athena.reusable-ai-data-assets", "e.athena.agentic-dev-operating-model", "e.robotics-press.shared-patterns", "e.athena.pop-health-greenfield"]
+    }
+  ],
+  "evidence": {
+    "e.athena.platform-ops": {
+      "type": "work-experience",
+      "title": "Platform Operations across athenahealth platform products",
+      "employer": "athenahealth",
+      "duration": "9 years 3 months (Mar 2017 – present)",
+      "scale": {
+        "team_size": 22,
+        "business_supported_usd": 160000000
+      },
+      "products_covered": ["Population Health", "Health Plan Data Exchange", "Moment of Care integrations", "Enterprise data product (warehouse-backed client offering)", "ACO products"],
+      "key_capabilities": ["post-sales implementation", "integration", "terminations", "knowledge management", "case ops", "cross-functional with Product + Engineering"],
+      "details": "evidence/enterprise-customer.md"
+    },
+    "e.athena.federated-ai-operating-model": {
+      "type": "work-product",
+      "title": "Federated AI operating model — moves operational teams from experimentation to repeatable AI-enabled execution",
+      "employer": "athenahealth",
+      "description": "Architected and executed an AI operating model that scales by federation rather than central evangelism. Components: AI enablement programs, builder office-hours communities, operational automation portfolio, reusable AI/data assets, and the agent-assisted development operating model.",
+      "details": "evidence/production-llm.md"
+    },
+    "e.athena.ai-enablement-communities": {
+      "type": "work-product",
+      "title": "AI enablement programs and builder communities — pipeline from learning to production",
+      "employer": "athenahealth",
+      "description": "Office-hours-style communities and structured cohorts that create a practical pipeline from learning to production. Operators arrive with a workflow, leave with a working prototype.",
+      "details": "evidence/production-llm.md"
+    },
+    "e.athena.automation-portfolio": {
+      "type": "work-product",
+      "title": "Operational automation portfolio across Support, Onboarding, Enablement, Data Operations",
+      "employer": "athenahealth",
+      "description": "Codified, prioritized, and assignable backlog of operational automation opportunities — replacing scattered initiatives with a managed portfolio.",
+      "details": "evidence/production-llm.md"
+    },
+    "e.athena.reusable-ai-data-assets": {
+      "type": "work-product",
+      "title": "Reusable AI and data enablement assets",
+      "employer": "athenahealth",
+      "description": "Shared repositories, OAuth tooling for warehouse access, 'SME-in-a-Box' prompt/agent patterns, delegated builder-license models. Lets domain experts encode themselves into a reusable form so the right people can build without central bottlenecks.",
+      "details": "evidence/production-llm.md"
+    },
+    "e.athena.governed-analytics-platform": {
+      "type": "work-product",
+      "title": "Governed analytics platform — shared SQL models, semantic tests, validation gates, data contracts",
+      "employer": "athenahealth",
+      "description": "Built on top of an enterprise warehouse-backed analytics stack (Snowflake). Unifies operational and warehouse data into reusable, validated models; downstream consumers get a stable surface to build against. Establishes what the data is.",
+      "details": "evidence/production-llm.md"
+    },
+    "e.athena.local-first-packages": {
+      "type": "work-product",
+      "title": "Local-first analytics package delivery (warehouse → Parquet → DuckDB)",
+      "employer": "athenahealth",
+      "description": "Packaging patterns with manifests, validation, provenance, and launch flows. Stakeholders run versioned analytics packages in a browser or locally without standing infrastructure. The right pattern for customer engagements with data residency, network, or speed-of-iteration constraints.",
+      "details": "evidence/production-llm.md"
+    },
+    "e.athena.agentic-dev-operating-model": {
+      "type": "work-product",
+      "title": "Agent-assisted development operating model — task packets, scoped worktrees, validation, closeout memory",
+      "employer": "athenahealth",
+      "description": "The operating model the federated builder community uses for agent-assisted development. Task packets in, durable closeout memory out. Scoped worktree blast radius. Staged review. Validation gates. Evaluation artifacts. The artifact an FDE could leave behind that keeps a customer going.",
+      "details": "evidence/agent-systems.md"
+    },
+    "e.athena.ai-case-intelligence": {
+      "type": "work-product",
+      "title": "AI case-intelligence workflows — embeddings, vector similarity, clustering, historical-resolution matching",
+      "employer": "athenahealth",
+      "description": "Applied embeddings, vector search, clustering, and LLM-assisted analysis to support-case operations. Turns historical institutional knowledge into an active input on every new case.",
+      "details": "evidence/production-llm.md"
+    },
+    "e.athena.source-first-publishing": {
+      "type": "work-product",
+      "title": "Source-first publishing pipelines (Markdown → docs / decks / web / video)",
+      "employer": "athenahealth",
+      "description": "Pipelines that convert structured Markdown sources into documents, decks, web artifacts, Confluence pages, and videos. Same artifact, multiple readers. The principle this application repo uses.",
+      "details": "evidence/communication.md"
+    },
+    "e.athena.continuity-work": {
+      "type": "work-product",
+      "title": "Data-product continuity work (security response, MFA rollout, support transition, cost initiative)",
+      "employer": "athenahealth",
+      "description": "Cross-functional data-product continuity work over 2024–2025: a customer credential / account-trust response, a multi-wave MFA rollout, a Tier 1 support transition to a global partner team, and a Snowflake cost-savings initiative through partner-account consolidation. Quantified outcomes documented internally.",
+      "details": "evidence/enterprise-customer.md"
+    },
+    "e.athena.pop-health-greenfield": {
+      "type": "work-product",
+      "title": "Built Population Health support from greenfield (2017)",
+      "employer": "athenahealth",
+      "description": "Joined as analyst on Pop Health as it was being integrated into athenaOne. There was no support structure for the complex data operation. Built the entire case-support process, knowledge bases, and operational infrastructure.",
+      "details": "evidence/healthcare-domain.md"
+    },
+    "e.athena.dataview-operationalization": {
+      "type": "work-product",
+      "title": "Operationalized enterprise data product (warehouse-backed client offering)",
+      "employer": "athenahealth",
+      "description": "Took raw athena production-data warehouse that had come through analytics/IT with no operational structure and built the support, ops, and integration to turn it into a productized client offering.",
+      "details": "evidence/enterprise-customer.md"
+    },
+    "e.athena.aco-support": {
+      "type": "work-product",
+      "title": "ACO support — value-based care, care management, quality reporting, financial analytics",
+      "employer": "athenahealth",
+      "details": "evidence/healthcare-domain.md"
+    },
+    "e.robotics-press.agents": {
+      "type": "personal-project",
+      "title": "robotics.press — production multi-agent system",
+      "url": "https://robotics.press",
+      "github_org": "github.com/williamrthomas (12+ repos under robotics-press-*)",
+      "production_scale": {
+        "companies_tracked": 1400,
+        "articles_published": 2800,
+        "intelligence_signals": 40700,
+        "critical_infrastructure_sites_scored": 31700,
+        "attacks_indexed": 4174
+      },
+      "agent_components": ["card_composer (replaces 36 templates)", "media agent", "research agent", "publisher agent", "editor agent", "intelligence harvester"],
+      "details": "evidence/agent-systems.md"
+    },
+    "e.robotics-press.python-stack": {
+      "type": "code-evidence",
+      "title": "Python-primary production stack",
+      "details": "Python across robotics-press, robotics-press-engine, robotics-press-agents, robotics-press-publishing, sourdoughcheatsheets.com. TypeScript in healthcare-data-training and postiz-app. Astro for publishing frontend."
+    },
+    "e.robotics-press.llm-traces": {
+      "type": "code-pattern",
+      "title": "llm_traces wrappers across LLM call sites",
+      "description": "Production observability pattern for LLM calls — backfilled wrappers across remaining call_llm_json sites (PR #282). Demonstrates eval-friendly instrumentation discipline.",
+      "details": "evidence/agent-systems.md"
+    },
+    "e.robotics-press.tool-registry": {
+      "type": "code-pattern",
+      "title": "Shared tool registry — define once, assign per agent (PR #391)",
+      "description": "Tool definitions live in a registry; agents subscribe to subsets. Mirrors the design intent of MCP server-side capability discovery.",
+      "details": "evidence/agent-systems.md"
+    },
+    "e.robotics-press.shared-patterns": {
+      "type": "code-pattern",
+      "title": "Repeatable patterns codified across 12+ repos",
+      "description": "Engine/agents/publishing/dashboard/sandbox/harness/research/intelligence/bizops are separated by concern; modular split of watchdog.py and email_comms.py (PRs #387, #386); state machine for PUBLISHED → REMEDIATION; systemd services for scheduled work.",
+      "details": "evidence/agent-systems.md"
+    },
+    "e.robotics-press.production-stats": {
+      "type": "production-evidence",
+      "title": "Live production stats",
+      "stats": "1,275 commits in May 2026 across 18 repos; 4,435 GitHub contributions in the last year; site live with 2.8K articles, 40.7K signals, geospatial CIDE map covering 31.7K sites.",
+      "details": "evidence/velocity.md"
+    },
+    "e.healthcare-data-training": {
+      "type": "personal-project",
+      "title": "healthcare-data-training — curriculum design for non-technical healthcare workers using agentic AI",
+      "github": "github.com/williamrthomas/healthcare-data-training (private)",
+      "thesis": "A new class of healthcare worker is emerging: clinically/operationally fluent, not technically trained, suddenly empowered by Claude Code / Codex / Cursor to do work that previously required a data engineer.",
+      "scope": "7 personas, 43-course landscape teardown, 10 funnel teardowns, 6-module curriculum spec (1,402 lines), GTM plan (3,000 lines).",
+      "relevance": "Directly maps to the FDE customer profile in healthcare — Bill already thinks about how non-technical enterprise users adopt Anthropic tools.",
+      "details": "evidence/healthcare-domain.md"
+    },
+    "e.parlant-fork": {
+      "type": "code-evidence",
+      "title": "Fork of parlant — behavior-guidance framework for customer-facing LLM agents",
+      "github": "github.com/williamrthomas/parlant (forked from emcie-co)",
+      "relevance": "Demonstrates active study of customer-facing agent patterns — exactly the FDE problem space.",
+      "details": "evidence/agent-systems.md"
+    },
+    "e.postiz-app": {
+      "type": "code-evidence",
+      "title": "postiz-app TypeScript work",
+      "github": "github.com/williamrthomas/postiz-app",
+      "language": "TypeScript",
+      "relevance": "Demonstrates second-language proficiency the JD calls out."
+    },
+    "e.founder.q5-labs": {
+      "type": "venture",
+      "title": "Q5 Labs — sports nutrition brand, founder/operator",
+      "dates": "Jan 2012 – Jun 2016",
+      "outcome": "Bootstrapped $0 → ~$20K/month in just over a year with no marketing budget. Sold the brand in 2016.",
+      "details": "evidence/founder-track.md"
+    },
+    "e.founder.bjj-weekly": {
+      "type": "venture",
+      "title": "BJJ Weekly — niche media venture, co-founder/publisher",
+      "dates": "May 2010 – Jan 2012",
+      "outcome": "19,764 newsletter subscribers at 74% open rate; 7M+ YouTube views; largest blog in the niche within 18 months.",
+      "details": "evidence/founder-track.md"
+    },
+    "e.consulting.thomas": {
+      "type": "venture",
+      "title": "Thomas Consulting (TCLLC) — independent IT consulting",
+      "dates": "2009 – 2016",
+      "customers": ["dental practices", "legal practices"],
+      "details": "evidence/founder-track.md"
+    },
+    "e.consulting.edit-systems": {
+      "type": "venture",
+      "title": "Edit Systems — independent consulting",
+      "dates": "2003 – 2005",
+      "key_engagement": "PM and design lead for statewide student-assessment database deployed to Maine's career & technical schools.",
+      "details": "evidence/founder-track.md"
+    },
+    "e.founder.niw-services": {
+      "type": "venture",
+      "title": "NIW Services — family services business co-owner",
+      "dates": "1995 – 1999",
+      "details": "evidence/founder-track.md"
+    },
+    "e.mbna.lan-tech": {
+      "type": "work-experience",
+      "title": "MBNA America — Customer Assistance → Credit Analyst → LAN Technician",
+      "dates": "1999 – 2003",
+      "details": "evidence/founder-track.md"
+    },
+    "e.mid-coast.tech-coordinator": {
+      "type": "work-experience",
+      "title": "Mid-Coast School of Technology — Technology Coordinator + Lab Instructor",
+      "dates": "2005 – 2009",
+      "details": "evidence/communication.md"
+    },
+    "e.substack.posts": {
+      "type": "publication",
+      "title": "williamrthomas.substack.com",
+      "url": "https://williamrthomas.substack.com",
+      "selected_posts": [
+        "Can AI Make Us More Human?",
+        "DNA Datascapes & Origami Hard Drives (white paper on information as physical form)",
+        "14 Rules for Solo Builders in the Age of AI",
+        "Why AI Slop Creates Unprecedented Developer Demand"
+      ],
+      "details": "evidence/communication.md"
+    },
+    "e.jiu-jitsu-magazine.4-articles": {
+      "type": "publication",
+      "title": "Jiu Jitsu Magazine — four articles (2013)",
+      "titles": ["Squats: the King of Exercises", "Suspension Training", "Sandbag Training", "Deadlift: Ultimate Functional Lift for BJJ"],
+      "details": "evidence/communication.md"
+    },
+    "e.linkedin.top-voices": {
+      "type": "signal",
+      "title": "LinkedIn top-voices followed",
+      "selection": ["Andrew Ng", "Yann LeCun", "Jim Fan", "Brij Kishore Pandey", "Simon Sinek", "Andriy Burkov", "Sridhar Ramaswamy", "Alex Wang", "Lex Fridman", "Armand Ruiz"],
+      "details": "evidence/communication.md"
+    },
+    "e.teaching.cad-cam": {
+      "type": "credential",
+      "title": "Maine teaching certificate; classroom CAD/CAM, conceptual physics, design technique",
+      "employer": "Mid-Coast School of Technology",
+      "dates": "2007 – 2009",
+      "details": "evidence/communication.md"
+    },
+    "e.coaching.25-years": {
+      "type": "long-form-commitment",
+      "title": "25+ years coaching across BJJ, wrestling, football",
+      "roles": ["Founder/Head Coach — Fat Buddha Fight Club (BJJ)", "Co-Founder — Rockland Wrestling Program", "Assistant Coach — Oceanside HS Football"],
+      "details": "evidence/communication.md"
+    },
+    "e.usmc.harrier-hydraulics": {
+      "type": "early-career",
+      "title": "USMC AV-8B Harrier hydraulics — production control, R&R",
+      "dates": "1986 – 1990",
+      "relevance": "First exposure to large-scale enterprise process: VIDS/MAF work-order tagging, intermediate-level repair flow, priority management.",
+      "details": "evidence/founder-track.md"
+    }
+  },
+  "interview_paths": {
+    "engineer": "interview-paths/engineer.md",
+    "pm-or-product": "interview-paths/pm-or-product.md",
+    "ic-fde": "interview-paths/ic-fde.md",
+    "leadership": "interview-paths/leadership.md"
+  },
+  "version": "0.2.0",
+  "last_updated": "2026-05-25",
+  "notes": "v0.2 incorporates the portable career data packet. Internal product names and quantified metrics from internal manager reviews have been generalized per the packet's redaction rules; specifics are available in interviews under appropriate confidentiality."
+}

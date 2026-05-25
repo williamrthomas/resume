@@ -1,0 +1,208 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Chatbot from "../components/Chatbot.tsx";
+import { candidate, headline, tiles, careerArc, requirements } from "../data/content";
+
+const categoryOrder = [
+  "ai-leadership",
+  "data-platform",
+  "ops-impact",
+  "public-build",
+  "founder",
+  "communication"
+] as const;
+
+const categoryLabels: Record<string, string> = {
+  "ai-leadership": "AI leadership",
+  "data-platform": "Data platform",
+  "ops-impact": "Operational impact",
+  "public-build": "Public building",
+  "founder": "Founder track",
+  "communication": "Communication"
+};
+
+const grouped = categoryOrder.map((cat) => ({
+  category: cat,
+  label: categoryLabels[cat],
+  tiles: tiles.filter((t) => t.category === cat)
+}));
+
+const heroStats = [
+  { label: "years at athenahealth", value: "9+" },
+  { label: "GitHub contributions (last yr)", value: "4,435" },
+  { label: "robotics.press signals", value: "40.7K+" },
+  { label: "infrastructure sites scored", value: "31.7K+" }
+];
+---
+
+<Layout title="William R. Thomas — Forward Deployed Engineer Application">
+  <!-- Top bar -->
+  <header class="border-b border-ink-700/10 bg-cream-50/80 backdrop-blur sticky top-0 z-30">
+    <div class="container-wide flex items-center justify-between py-4">
+      <div class="flex items-center gap-3">
+        <div class="h-8 w-8 rounded-md bg-ink-900 text-cream-50 flex items-center justify-center font-serif text-sm">W</div>
+        <div class="leading-tight">
+          <p class="text-sm font-medium text-ink-900">William R. Thomas</p>
+          <p class="text-xs text-ink-500">FDE, Applied AI · Anthropic</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <a href="/resume.pdf" target="_blank" rel="noopener" class="pill hover:bg-cream-200 transition">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          Résumé
+        </a>
+        <button id="logout-btn" class="text-xs text-ink-500 hover:text-ink-900 transition px-2 py-1">Sign out</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="container-tight pt-20 pb-12">
+    <p class="text-xs uppercase tracking-[0.2em] text-ink-500 mb-4 fade-up">Application — for hiring panel review</p>
+    <h1 class="text-4xl md:text-5xl font-serif text-ink-900 leading-tight mb-6 fade-up fade-up-delay-1">
+      Forward Deployed Engineer, Applied AI
+      <span class="block text-ink-500 text-2xl md:text-3xl font-serif mt-2">William R. Thomas, applying.</span>
+    </h1>
+    <p class="text-lg text-ink-700 leading-relaxed mb-6 fade-up fade-up-delay-2">{headline}</p>
+    <div class="flex flex-wrap items-center gap-2 fade-up fade-up-delay-3">
+      <a href={candidate.links.linkedin} target="_blank" rel="noopener" class="pill hover:bg-cream-200 transition">LinkedIn ↗</a>
+      <a href={candidate.links.github} target="_blank" rel="noopener" class="pill hover:bg-cream-200 transition">GitHub ↗</a>
+      <a href={candidate.links.roboticsPress} target="_blank" rel="noopener" class="pill hover:bg-cream-200 transition">robotics.press ↗</a>
+      <a href={candidate.links.substack} target="_blank" rel="noopener" class="pill hover:bg-cream-200 transition">Substack ↗</a>
+      <a href="mailto:william.r.thomas@gmail.com" class="pill hover:bg-cream-200 transition">{candidate.email}</a>
+    </div>
+  </section>
+
+  <!-- Hero stats strip -->
+  <section class="container-wide pb-12">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+      {heroStats.map((s, i) => (
+        <div class={`card text-center fade-up fade-up-delay-${Math.min(i + 1, 4)}`}>
+          <p class="metric-value">{s.value}</p>
+          <p class="metric-label">{s.label}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Why I'm a fit -->
+  <section class="container-tight py-8">
+    <h2 class="text-2xl font-serif text-ink-900 mb-4">Why I'm a fit</h2>
+    <div class="prose prose-ink max-w-none">
+      <p class="text-ink-700 leading-relaxed mb-4">
+        I'm a former technical founder who's spent nine years inside athenahealth building exactly the kind of internal platform an FDE would otherwise be deploying. Today I'm running the AI/data product layer of that platform: I architected the federated AI operating model, built the governed analytics platform, designed the agent-assisted development model, and shipped local-first analytics packaging.
+      </p>
+      <p class="text-ink-700 leading-relaxed mb-4">
+        Outside athena I run <a href={candidate.links.roboticsPress} class="link">robotics.press</a> — a public production multi-agent system in security/defense/infrastructure intelligence, with a card-composer agent, MCP-shaped shared tool registry, llm_traces observability, mixed-model routing, and 12+ services in Python. 4,435 GitHub contributions in the last year. The healthcare-data-training repo I started in May 2026 is a curriculum for non-technical healthcare workers using Claude Code / Codex / Cursor — exact-fit customer profile for an FDE in the healthcare vertical.
+      </p>
+      <p class="text-ink-700 leading-relaxed">
+        Use the cards below to drill in by topic. Or — easier — open the chatbot in the corner and ask. It's grounded in the same evidence you see on this page.
+      </p>
+    </div>
+  </section>
+
+  <!-- Evidence by category -->
+  {grouped.map((g) => g.tiles.length > 0 && (
+    <section class="container-wide py-8">
+      <div class="flex items-baseline justify-between mb-5">
+        <h2 class="text-xl font-serif text-ink-900">{g.label}</h2>
+        <p class="text-xs text-ink-500">{g.tiles.length} {g.tiles.length === 1 ? "item" : "items"}</p>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        {g.tiles.map((t) => (
+          <article class="card flex flex-col">
+            <header class="mb-3">
+              <h3 class="text-lg font-serif text-ink-900 leading-snug">{t.title}</h3>
+              {t.subtitle && <p class="text-xs text-ink-500 mt-1">{t.subtitle}</p>}
+            </header>
+            <p class="text-sm text-ink-700 leading-relaxed mb-4 flex-1">{t.body}</p>
+            {t.metrics && t.metrics.length > 0 && (
+              <div class="grid grid-cols-3 gap-3 pt-3 border-t border-ink-700/10">
+                {t.metrics.map((m) => (
+                  <div class="metric">
+                    <span class="metric-value text-xl">{m.value}</span>
+                    <span class="metric-label">{m.label}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+            {t.links && t.links.length > 0 && (
+              <div class="mt-3 flex flex-wrap gap-2">
+                {t.links.map((l) => (
+                  <a href={l.href} target="_blank" rel="noopener" class="text-sm link">{l.label}</a>
+                ))}
+              </div>
+            )}
+          </article>
+        ))}
+      </div>
+    </section>
+  ))}
+
+  <!-- Career arc -->
+  <section class="container-tight py-12">
+    <h2 class="text-2xl font-serif text-ink-900 mb-6">Career arc</h2>
+    <ol class="space-y-3">
+      {careerArc.map((c, i) => {
+        const trackColor = {
+          operator: "bg-ink-400",
+          founder: "bg-rust-500",
+          athena: "bg-ink-900",
+          "public-build": "bg-rust-400"
+        }[c.track] || "bg-ink-400";
+        return (
+          <li class="flex gap-4 items-start">
+            <span class={`mt-1.5 inline-block h-2 w-2 rounded-full ${trackColor} flex-shrink-0`}></span>
+            <div class="flex-1 min-w-0">
+              <p class="text-xs uppercase tracking-wider text-ink-500">{c.year}</p>
+              <p class="text-sm text-ink-800 leading-snug">{c.role}</p>
+            </div>
+          </li>
+        );
+      })}
+    </ol>
+  </section>
+
+  <!-- JD ↔ evidence -->
+  <section class="container-wide py-12 bg-cream-100 border-y border-ink-700/10">
+    <div class="container-tight">
+      <h2 class="text-2xl font-serif text-ink-900 mb-2">Job requirements ↔ evidence</h2>
+      <p class="text-sm text-ink-600 mb-6">Each line item in the JD mapped to the evidence on this page.</p>
+      <div class="space-y-2">
+        {requirements.map((r) => (
+          <div class="rounded-lg bg-cream-50 border border-ink-700/10 px-4 py-3">
+            <p class="text-sm text-ink-900 font-medium">{r.text}</p>
+            <p class="text-xs text-ink-500 mt-1">
+              Evidence: {r.evidence.join(" · ")}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="container-wide py-12 text-center border-t border-ink-700/10">
+    <p class="text-sm text-ink-600 mb-3">
+      Built by Bill with Claude. The site is gated; the data is the application.
+    </p>
+    <p class="text-xs text-ink-500">
+      <a href="mailto:william.r.thomas@gmail.com" class="link">william.r.thomas@gmail.com</a>
+      · <a href="tel:+12079518613" class="link">207-951-8613</a>
+      · {candidate.location}
+    </p>
+  </footer>
+
+  <Chatbot client:load />
+
+  <script is:inline>
+    document.getElementById("logout-btn").addEventListener("click", async () => {
+      await fetch("/api/logout", { method: "POST" });
+      window.location.href = "/";
+    });
+  </script>
+</Layout>

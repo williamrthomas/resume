@@ -1,0 +1,90 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="William R. Thomas — Application">
+  <main class="min-h-screen flex items-center justify-center px-6 py-12">
+    <div class="w-full max-w-md fade-up">
+      <div class="mb-8 text-center">
+        <p class="text-xs uppercase tracking-[0.2em] text-ink-500 mb-3">Application</p>
+        <h1 class="text-3xl md:text-4xl font-serif text-ink-900 mb-3">William R. Thomas</h1>
+        <p class="text-ink-700">
+          Forward Deployed Engineer, Applied AI
+          <span class="block text-ink-500 text-sm mt-1">Anthropic</span>
+        </p>
+      </div>
+
+      <div class="card">
+        <p class="text-sm text-ink-600 mb-4 leading-relaxed">
+          This is a private application surface. It contains internal metrics and detail that aren't in the public résumé. Enter the password Bill shared with you to continue.
+        </p>
+
+        <form id="login-form" class="space-y-3">
+          <label class="block">
+            <span class="sr-only">Password</span>
+            <input
+              type="password"
+              name="password"
+              autocomplete="current-password"
+              placeholder="Password"
+              required
+              class="w-full rounded-lg border border-ink-700/20 bg-cream-50 px-4 py-3 text-ink-900 placeholder:text-ink-400 focus:outline-none focus:border-rust-500 focus:ring-2 focus:ring-rust-500/20 transition"
+            />
+          </label>
+          <button
+            type="submit"
+            id="submit-btn"
+            class="w-full rounded-lg bg-ink-900 px-4 py-3 text-cream-50 font-medium hover:bg-ink-800 transition disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            Enter
+          </button>
+          <p id="error" class="hidden text-sm text-rust-600 text-center"></p>
+        </form>
+      </div>
+
+      <div class="mt-8 text-center text-xs text-ink-500 space-y-1">
+        <p>If you don't have the password, contact Bill directly:</p>
+        <p>
+          <a href="mailto:william.r.thomas@gmail.com" class="link">william.r.thomas@gmail.com</a>
+          ·
+          <a href="https://www.linkedin.com/in/wthomasoh/" class="link" target="_blank" rel="noopener">LinkedIn</a>
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <script is:inline>
+    const form = document.getElementById("login-form");
+    const errEl = document.getElementById("error");
+    const btn = document.getElementById("submit-btn");
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      errEl.classList.add("hidden");
+      btn.disabled = true;
+      btn.textContent = "Checking…";
+      const password = new FormData(form).get("password");
+      try {
+        const res = await fetch("/api/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ password })
+        });
+        if (res.ok) {
+          const params = new URLSearchParams(window.location.search);
+          const next = params.get("next") || "/app";
+          window.location.href = next;
+          return;
+        }
+        const data = await res.json().catch(() => ({}));
+        errEl.textContent = data.error || "Invalid password";
+        errEl.classList.remove("hidden");
+      } catch (err) {
+        errEl.textContent = "Network error — try again.";
+        errEl.classList.remove("hidden");
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "Enter";
+      }
+    });
+  </script>
+</Layout>
