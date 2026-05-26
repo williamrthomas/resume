@@ -2,6 +2,76 @@ import { useEffect, useRef, useState } from "react";
 
 type Msg = { role: "user" | "assistant"; content: string };
 
+// Lightweight markdown renderer for assistant messages.
+// Handles: **bold**, *italic*, `code`, [text](url), bullet lists (- / *), paragraphs.
+function inlineMd(text: string): React.ReactNode[] {
+  const re = /(\*\*[^*]+\*\*|`[^`]+`|\[[^\]]+\]\([^)]+\)|\*[^*\s][^*]*\*)/g;
+  const parts: React.ReactNode[] = [];
+  let last = 0;
+  let k = 0;
+  let m: RegExpExecArray | null;
+  while ((m = re.exec(text)) !== null) {
+    if (m.index > last) parts.push(text.slice(last, m.index));
+    const t = m[0];
+    if (t.startsWith("**")) {
+      parts.push(<strong key={k++} className="font-semibold">{t.slice(2, -2)}</strong>);
+    } else if (t.startsWith("`")) {
+      parts.push(<code key={k++} className="rounded bg-cream-100 px-1 py-0.5 text-[0.85em] text-ink-900">{t.slice(1, -1)}</code>);
+    } else if (t.startsWith("[")) {
+      const lm = /\[([^\]]+)\]\(([^)]+)\)/.exec(t);
+      if (lm) parts.push(<a key={k++} href={lm[2]} target="_blank" rel="noopener" className="link">{lm[1]}</a>);
+      else parts.push(t);
+    } else {
+      parts.push(<em key={k++}>{t.slice(1, -1)}</em>);
+    }
+    last = m.index + t.length;
+  }
+  if (last < text.length) parts.push(text.slice(last));
+  return parts;
+}
+
+function Markdown({ text }: { text: string }) {
+  const lines = text.split("\n");
+  const blocks: React.ReactNode[] = [];
+  let ul: string[] = [];
+  let para: string[] = [];
+  let k = 0;
+  const flushPara = () => {
+    if (para.length) {
+      blocks.push(<p key={`p${k++}`}>{inlineMd(para.join("\n"))}</p>);
+      para = [];
+    }
+  };
+  const flushList = () => {
+    if (ul.length) {
+      blocks.push(
+        <ul key={`l${k++}`} className="list-disc list-outside pl-5 space-y-1">
+          {ul.map((item, i) => <li key={i}>{inlineMd(item)}</li>)}
+        </ul>
+      );
+      ul = [];
+    }
+  };
+  for (const raw of lines) {
+    const bullet = /^\s*[-*]\s+(.+)$/.exec(raw);
+    if (bullet) {
+      flushPara();
+      ul.push(bullet[1]);
+      continue;
+    }
+    if (raw.trim() === "") {
+      flushPara();
+      flushList();
+      continue;
+    }
+    flushList();
+    para.push(raw);
+  }
+  flushPara();
+  flushList();
+  return <div className="space-y-2 whitespace-pre-wrap">{blocks}</div>;
+}
+
 const SUGGESTIONS = [
   "What makes Bill a fit for FDE?",
   "Walk me through robotics.press",
@@ -174,10 +244,14 @@ export default function Chatbot() {
                   className={
                     m.role === "user"
                       ? "max-w-[85%] rounded-2xl rounded-br-md bg-ink-900 text-cream-50 px-4 py-2.5 text-sm leading-relaxed"
-                      : "max-w-[85%] rounded-2xl rounded-bl-md bg-white border border-ink-700/10 text-ink-900 px-4 py-2.5 text-sm leading-relaxed whitespace-pre-wrap"
+                      : "max-w-[85%] rounded-2xl rounded-bl-md bg-white border border-ink-700/10 text-ink-900 px-4 py-2.5 text-sm leading-relaxed"
                   }
                 >
-                  {m.content || <span className="inline-block h-2 w-2 rounded-full bg-ink-400 animate-pulse"></span>}
+                  {m.role === "assistant"
+                    ? (m.content
+                        ? <Markdown text={m.content} />
+                        : <span className="inline-block h-2 w-2 rounded-full bg-ink-400 animate-pulse"></span>)
+                    : m.content}
                 </div>
               </div>
             ))}
