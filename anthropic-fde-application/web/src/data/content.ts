@@ -15,12 +15,11 @@ export const candidate = {
   links: {
     linkedin: "https://www.linkedin.com/in/wthomasoh/",
     github: "https://github.com/williamrthomas",
-    substack: "https://williamrthomas.substack.com",
     roboticsPress: "https://robotics.press"
   }
 } as const;
 
-export const headline = `Data product and AI operations leader. Nine years at athenahealth in enterprise platform operations; current title Platform Data Solutions Senior Manager — Internal AI & Data Product Builder. Architecting AI-first operations: federated operating models, builder communities, governed analytics platforms, agentic development workflows, and local-first analytics delivery.`;
+export const headline = `Data product and AI operations leader. Nine years at athenahealth in enterprise platform operations; current title Platform Data Solutions Senior Manager — Internal AI & Data Product Builder. Leading the shift to AI-first operations: federated operating models, builder communities, governed analytics platforms, agentic development workflows, and local-first analytics delivery.`;
 
 // Tile/card content for the visual experience. Order matters for layout.
 export type EvidenceTile = {
@@ -40,7 +39,7 @@ export const tiles: EvidenceTile[] = [
     title: "Federated AI operating model",
     subtitle: "Internal · athenahealth · 2024–present",
     body:
-      "Architected and executed an AI operating model that moved operational teams from isolated experimentation to repeatable AI-enabled execution. Federated structure of local builders with shared infrastructure, office-hours communities, and a clear path from learning to production. The principle: AI adoption inside an enterprise does not scale by central evangelism — it scales by federation.",
+      "Designed and led an AI operating model that moved operational teams from isolated experimentation toward repeatable AI-enabled execution — a federated structure of local builders with shared infrastructure, office-hours communities, and a path from learning to production. The principle: AI adoption inside an enterprise doesn't scale by central evangelism — it scales by federation.",
     metrics: [
       { label: "AI champions", value: "60+" },
       { label: "active builders", value: "25+" },
@@ -52,8 +51,13 @@ export const tiles: EvidenceTile[] = [
     category: "data-platform",
     title: "Governed analytics platform",
     subtitle: "Internal · athenahealth · 2025–present",
+    metrics: [
+      { label: "SQL models", value: "~100" },
+      { label: "published contracts", value: "~30" },
+      { label: "semantic tests", value: "20+" }
+    ],
     body:
-      "Built shared SQL models, semantic tests, validation gates, and consumer-facing data contracts on top of an enterprise warehouse-backed analytics stack (Snowflake). Unifies operational and warehouse data into reusable, validated models. Downstream consumers get a stable surface to build against, not a moving target. The fastest path from 'we have data' to 'you can ship Claude against it.'"
+      "Led the design of a touch-first work-interaction analytics platform on the team's enterprise warehouse stack: ~100 SQL models across staging, bridge, and serving layers; ~30 stable published analytics contracts; 20+ semantic tests; and a CRM-to-warehouse entity bridge that resolves operational evidence to authoritative business context with match status and confidence. Unifies CRM activity with warehouse truth so downstream products read stable contracts instead of moving internal logic. Downstream consumers get a stable surface to build against, not a moving target. The fastest path from 'we have data' to 'you can ship Claude against it.'"
   },
   {
     id: "agentic-dev-operating-model",
@@ -61,7 +65,7 @@ export const tiles: EvidenceTile[] = [
     title: "Agent-assisted development operating model",
     subtitle: "Internal · athenahealth · 2025–present",
     body:
-      "Designed the operating model the federated AI builder community uses for agent-assisted development. Task packets in, durable closeout memory out. Scoped worktree blast radius. Staged review. Validation gates. Evaluation artifacts. The artifact an FDE leaves behind that lets a customer keep going."
+      "Designed the operating model the federated AI builder community uses for agent-assisted development. SQLite-backed task control plane; task packets in, durable run records and closeout memory out. Scoped worktree blast radius. Staged review. Validation gates. Evaluation harnesses with structured scoring against required artifacts. Reusable skills with progressive disclosure. The artifact an FDE leaves behind that lets a customer keep going."
   },
   {
     id: "local-first-packages",
@@ -69,7 +73,7 @@ export const tiles: EvidenceTile[] = [
     title: "Local-first analytics package delivery",
     subtitle: "Internal · athenahealth · 2025–present",
     body:
-      "Built warehouse → Parquet → DuckDB packaging patterns with manifests, validation, provenance, and launch flows. Stakeholders get versioned analytics packages they can run in a browser or locally without standing infrastructure — the right pattern for customer engagements with data residency, network, or speed-of-iteration constraints."
+      "Designed warehouse → Parquet → DuckDB packaging patterns with manifests, validation, provenance, and launch flows. Stakeholders get versioned analytics packages they can run in a browser or locally without standing infrastructure — the right pattern for customer engagements with data residency, network, or speed-of-iteration constraints."
   },
   {
     id: "ai-case-intelligence",
@@ -77,7 +81,7 @@ export const tiles: EvidenceTile[] = [
     title: "AI case-intelligence workflows",
     subtitle: "Internal · athenahealth · 2025–present",
     body:
-      "Applied embeddings, vector similarity, clustering, and LLM-assisted analysis to support-case operations. Historical resolutions become an active input on every new case. Turns institutional knowledge into something the agent can reach for instead of something stuck in someone's head."
+      "Applied Snowflake Cortex embeddings, cosine-similarity matching, KMeans/PCA clustering with exemplar selection, and LLM-assisted analysis to support-case operations. Closed-case corpora are refreshed against open cases to surface relevant historical resolutions and recurring themes. Turns institutional knowledge into something the agent can reach for instead of something stuck in someone's head."
   },
   {
     id: "continuity-mfa",
@@ -98,7 +102,7 @@ export const tiles: EvidenceTile[] = [
     title: "Global Tier 1 support transition",
     subtitle: "Internal · athenahealth · 2024–2025",
     body:
-      "Moved Tier 1 enterprise-data-product support to a global partner team. Documentation, KB transfer, runbook design, ramp coaching, escalation handoffs.",
+      "Led the transition of Tier 1 enterprise-data-product support to a global partner team — documentation, KB transfer, runbook design, ramp coaching, escalation handoffs.",
     metrics: [
       { label: "partner Tier 1 resolution share", value: "28% → 60%" },
       { label: "time to that shift", value: "6 months" }
@@ -121,7 +125,7 @@ export const tiles: EvidenceTile[] = [
     title: "Data-product release recovery",
     subtitle: "Internal · athenahealth · 2025",
     body:
-      "Mitigated a release drought by executing two off-cycle releases, expanding available data assets and templates.",
+      "Helped recover from a release drought by driving two off-cycle releases that expanded available data assets and templates.",
     metrics: [
       { label: "new views/tables", value: "95" },
       { label: "data elements", value: "21" },
@@ -134,7 +138,7 @@ export const tiles: EvidenceTile[] = [
     title: "Geospatial site-visit planning solution",
     subtitle: "Internal · athenahealth · 2025",
     body:
-      "Delivered a high-impact geospatial planning solution credited internally with saving hundreds of planning hours. Map-based decision support for site-visit, account, and outreach operations.",
+      "Delivered a geospatial planning solution credited internally with saving hundreds of planning hours — map-based decision support for site-visit, account, and outreach operations.",
     metrics: [
       { label: "planning hours saved", value: "hundreds" }
     ]
@@ -151,7 +155,7 @@ export const tiles: EvidenceTile[] = [
     id: "robotics-press",
     category: "public-build",
     title: "robotics.press — public production multi-agent system",
-    subtitle: "Public · 2024–present",
+    subtitle: "Public · 2025–present",
     body:
       "Fully automated, agentic intelligence platform tracking robotics deployments in security, defense, and infrastructure. The CIDE (Critical Infrastructure Drone Exposure) map is a geospatial intelligence product scoring infrastructure sites for drone vulnerability across conflict zones. Built on a Python service network of 12+ repos with a card-composer agent, shared tool registry, llm_traces observability, mixed-model routing (Claude + Haiku batched jobs), and a listener pattern for SEC EDGAR, GDELT, DVIDS, OpenAlex, and YouTube.",
     metrics: [
@@ -219,13 +223,28 @@ export const tiles: EvidenceTile[] = [
     ]
   },
   {
-    id: "substack",
-    category: "communication",
-    title: "Substack — `williamrthomas.substack.com`",
-    subtitle: "Public writing",
+    id: "source-first-publishing",
+    category: "ops-impact",
+    title: "Source-first publishing pipelines",
+    subtitle: "Internal · athenahealth · 2024–present",
     body:
-      "Active essay practice on the AI / building / agent topics that overlap with the FDE role. \"14 Rules for Solo Builders in the Age of AI\" · \"Why AI Slop Creates Unprecedented Developer Demand\" · \"Can AI Make Us More Human?\" · \"DNA Datascapes & Origami Hard Drives\".",
-    links: [{ label: "williamrthomas.substack.com →", href: "https://williamrthomas.substack.com" }]
+      "Led the design of repeatable Markdown-first publishing pipelines: one structured source → documents, decks (Marp toolkit with reusable themes and quality gates), Confluence storage-format pages (native macros + attachments), web artifacts, and Remotion-generated video from structured JSON specs. Same artifact, multiple readers — refine the source, every output follows. Evidence-backed narratives stay aligned across every channel."
+  },
+  {
+    id: "operational-analytics",
+    category: "data-platform",
+    title: "Operational analytics — NPS deltas & claims lifecycle",
+    subtitle: "Internal · athenahealth · 2025–present",
+    body:
+      "Designed feedback and lifecycle analytics surfaces that reveal where to look. NPS: typed survey staging, client-month rollups with baseline deltas, sparse-flag handling, and attention scoring that ranks investigations by signal change. Claims: deterministic event contracts → state-transition reducers → friction signals, with executive-ready prototypes. Plus a semantic-model-first Power BI strategy — accessibility, performance, and governance baked into reusable custom visuals."
+  },
+  {
+    id: "product-evidence",
+    category: "data-platform",
+    title: "Product-client evidence matrix",
+    subtitle: "Internal · athenahealth · 2024–present",
+    body:
+      "Reconciled product, client, commercial, and delivery signals from systems that didn't naturally answer the same question — with identity resolution between operational and warehouse views — so product, support, and commercial teams could read one validated picture of adoption, gaps, and where engagement was actually happening."
   }
 ];
 
@@ -242,8 +261,7 @@ export const careerArc = [
   { year: "Mar 2017 – Jul 2020", role: "athenahealth — Senior Emerging Product Services Associate", track: "athena" },
   { year: "Jul 2020 – Dec 2024", role: "athenahealth — Manager, Emerging Products Services", track: "athena" },
   { year: "Aug 2024 – present", role: "athenahealth — Platform Data Solutions Senior Manager / Internal AI & Data Product Builder", track: "athena" },
-  { year: "2024 – present", role: "robotics.press — creator/operator", track: "public-build" },
-  { year: "2025 – present", role: "Substack writing on agentic AI; healthcare-data-training curriculum (private repo)", track: "public-build" }
+  { year: "2025 – present", role: "robotics.press — creator/operator", track: "public-build" }
 ] as const;
 
 // JD requirements (paraphrased) — used for the requirements ↔ evidence graph viz
@@ -251,15 +269,15 @@ export const requirements = [
   { id: "r.tenure", text: "3+ years in a technical, customer-facing role", evidence: ["federated-ai", "robotics-press", "founder-q5", "founder-bjj-weekly"] },
   { id: "r.production-llm", text: "Production LLM experience (prompt eng, agents, evals, deploy at scale)", evidence: ["federated-ai", "agentic-dev-operating-model", "ai-case-intelligence", "robotics-press"] },
   { id: "r.python", text: "Strong Python, ideally a second language", evidence: ["robotics-press", "governed-analytics", "healthcare-data-training", "github-velocity"] },
-  { id: "r.shipped-prod", text: "Shipped production applications", evidence: ["governed-analytics", "local-first-packages", "robotics-press", "founder-q5"] },
+  { id: "r.shipped-prod", text: "Shipped production applications", evidence: ["governed-analytics", "local-first-packages", "robotics-press", "founder-q5", "source-first-publishing", "operational-analytics"] },
   { id: "r.high-agency", text: "High agency under ambiguity", evidence: ["federated-ai", "continuity-mfa", "continuity-tier1-transition", "interim-po", "founder-q5"] },
-  { id: "r.cross-org", text: "Cross-organizational collaboration", evidence: ["federated-ai", "continuity-tier1-transition", "continuity-mfa"] },
-  { id: "r.safe-ai", text: "Passion for safe, beneficial AI", evidence: ["substack", "healthcare-data-training"] },
-  { id: "r.comm", text: "Strong communication, low ego", evidence: ["substack", "healthcare-data-training", "founder-bjj-weekly"] },
-  { id: "r.healthcare", text: "Healthcare / enterprise vertical (plus)", evidence: ["federated-ai", "continuity-mfa", "continuity-tier1-transition", "interim-po", "healthcare-data-training"] },
+  { id: "r.cross-org", text: "Cross-organizational collaboration", evidence: ["federated-ai", "continuity-tier1-transition", "continuity-mfa", "product-evidence"] },
+  { id: "r.safe-ai", text: "Passion for safe, beneficial AI", evidence: ["healthcare-data-training"] },
+  { id: "r.comm", text: "Strong communication, low ego", evidence: ["healthcare-data-training", "founder-bjj-weekly", "source-first-publishing"] },
+  { id: "r.healthcare", text: "Healthcare / enterprise vertical (plus)", evidence: ["federated-ai", "continuity-mfa", "continuity-tier1-transition", "interim-po", "healthcare-data-training", "operational-analytics", "product-evidence"] },
   { id: "r.enterprise-it", text: "Enterprise IT systems / AI deployment patterns (plus)", evidence: ["governed-analytics", "local-first-packages", "agentic-dev-operating-model", "continuity-snowflake"] },
   { id: "r.mcp-subagents", text: "Ship MCP servers, sub-agents, agent skills", evidence: ["agentic-dev-operating-model", "robotics-press", "ai-case-intelligence"] },
-  { id: "r.codify-patterns", text: "Codify repeatable deployment patterns", evidence: ["federated-ai", "governed-analytics", "agentic-dev-operating-model", "local-first-packages"] },
+  { id: "r.codify-patterns", text: "Codify repeatable deployment patterns", evidence: ["federated-ai", "governed-analytics", "agentic-dev-operating-model", "local-first-packages", "source-first-publishing", "operational-analytics", "product-evidence"] },
   { id: "r.fde-services", text: "FDE / professional services (plus)", evidence: ["federated-ai", "continuity-tier1-transition", "interim-po"] },
   { id: "r.former-founder", text: "Former technical founder (encouraged)", evidence: ["founder-q5", "founder-bjj-weekly"] }
 ];

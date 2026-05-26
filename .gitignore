@@ -1,0 +1,9 @@
+# Claude Code local config (per-machine permissions etc.)
+.claude/settings.local.json
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
