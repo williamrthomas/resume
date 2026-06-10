@@ -7,8 +7,8 @@ interface Env {
   ANTHROPIC_API_KEY: string;
 }
 
-// Paths that are always public.
-const PUBLIC_PATHS = new Set<string>(["/", "/favicon.ico", "/api/login"]);
+// Paths that are always public. /api/admin/logs self-gates with ADMIN_KEY.
+const PUBLIC_PATHS = new Set<string>(["/", "/favicon.ico", "/api/login", "/api/admin/logs"]);
 const PUBLIC_PREFIXES = ["/_astro/", "/assets/", "/og/"];
 
 export const onRequest: PagesFunction<Env> = async ({ request, next, env }) => {

@@ -87,6 +87,10 @@ export default function Chatbot() {
   const [error, setError] = useState<string | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  // Stable id so server-side logs can group a visitor's turns into one conversation.
+  const sessionIdRef = useRef<string>(
+    typeof crypto !== "undefined" && crypto.randomUUID ? crypto.randomUUID() : String(Date.now())
+  );
 
   useEffect(() => {
     if (scrollRef.current) scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
@@ -112,7 +116,7 @@ export default function Chatbot() {
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: next })
+        body: JSON.stringify({ messages: next, sessionId: sessionIdRef.current })
       });
 
       if (!res.ok || !res.body) {

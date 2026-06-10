@@ -4,9 +4,12 @@
 // with origin tags, got-it-wrong examples). Single source of truth.
 
 import { buildSystemPrompt } from "../../src/data/system-prompt";
+import { clientMeta, logChatTurn, readAssistantText } from "../lib/log";
 
 interface Env {
   ANTHROPIC_API_KEY: string;
+  // Optional: visitor/chat logging. Absent in local dev without D1 → logging is skipped.
+  LOGS_DB?: D1Database;
 }
 
 type Msg = { role: "user" | "assistant"; content: string };
@@ -15,7 +18,7 @@ type Msg = { role: "user" | "assistant"; content: string };
 // across requests in the same Worker instance).
 const SYSTEM_PROMPT = buildSystemPrompt();
 
-export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
+export const onRequestPost: PagesFunction<Env> = async ({ request, env, waitUntil }) => {
   if (!env.ANTHROPIC_API_KEY) {
     return new Response(JSON.stringify({ error: "Server not configured (missing API key)" }), {
       status: 500,
@@ -23,12 +26,14 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
     });
   }
 
-  let body: { messages?: Msg[] };
+  let body: { messages?: Msg[]; sessionId?: string };
   try {
     body = await request.json();
   } catch {
     return new Response(JSON.stringify({ error: "Bad request" }), { status: 400 });
   }
+
+  const sessionId = typeof body.sessionId === "string" ? body.sessionId.slice(0, 64) : "";
 
   const messages = (body.messages || []).filter(
     (m) => (m.role === "user" || m.role === "assistant") && typeof m.content === "string" && m.content.length > 0
@@ -73,7 +78,31 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
     );
   }
 
-  return new Response(upstream.body, {
+  // Tee the stream: one branch goes to the client, the other is consumed
+  // after the response returns to accumulate the assistant's reply for logging.
+  const [toClient, toLog] = upstream.body.tee();
+
+  if (env.LOGS_DB) {
+    const lastUser = [...capped].reverse().find((m) => m.role === "user");
+    const turn = capped.filter((m) => m.role === "user").length;
+    const meta = clientMeta(request);
+    waitUntil(
+      readAssistantText(toLog).then((assistantMsg) =>
+        logChatTurn(env.LOGS_DB, {
+          sessionId,
+          turn,
+          userMsg: lastUser?.content || "",
+          assistantMsg,
+          meta
+        })
+      )
+    );
+  } else {
+    // No logging configured: drain the second branch so it doesn't backpressure.
+    void toLog.cancel();
+  }
+
+  return new Response(toClient, {
     status: 200,
     headers: {
       "Content-Type": "text/event-stream",

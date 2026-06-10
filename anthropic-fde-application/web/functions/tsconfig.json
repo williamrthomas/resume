@@ -1,0 +1,12 @@
+{
+  // Cloudflare Pages Functions run on the Workers runtime, not the browser.
+  // Scope the Workers ambient types here so they don't override DOM types
+  // (e.g. Response.json) used by the React client code under src/.
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    "types": ["@cloudflare/workers-types"],
+    "lib": ["ES2022", "WebWorker"],
+    "noEmit": true
+  },
+  "include": ["**/*.ts"]
+}
