@@ -1,10 +1,10 @@
 import { issueSession, sessionCookie } from "../lib/auth";
-import { clientMeta, logLogin } from "../lib/log";
+import { logLogin } from "../lib/log";
 
 interface Env {
   SITE_PASSWORD: string;
   SESSION_SECRET: string;
-  // Optional: login logging. Absent in local dev without D1 → logging is skipped.
+  // Optional: anonymous usage counting. Absent in local dev without D1 → logging is skipped.
   LOGS_DB?: D1Database;
 }
 
@@ -29,7 +29,7 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env, waitUnti
   }
 
   if (!body.password || body.password !== env.SITE_PASSWORD) {
-    waitUntil(logLogin(env.LOGS_DB, false, clientMeta(request)));
+    waitUntil(logLogin(env.LOGS_DB, false));
     // Tiny anti-bruteforce sleep.
     await new Promise((r) => setTimeout(r, 500));
     return new Response(JSON.stringify({ error: "Invalid password" }), {
@@ -38,7 +38,7 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env, waitUnti
     });
   }
 
-  waitUntil(logLogin(env.LOGS_DB, true, clientMeta(request)));
+  waitUntil(logLogin(env.LOGS_DB, true));
 
   const token = await issueSession(env.SESSION_SECRET, TTL_SEC * 1000);
   return new Response(JSON.stringify({ ok: true }), {

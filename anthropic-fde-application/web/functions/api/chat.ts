@@ -4,11 +4,11 @@
 // with origin tags, got-it-wrong examples). Single source of truth.
 
 import { buildSystemPrompt } from "../../src/data/system-prompt";
-import { clientMeta, logChatTurn, readAssistantText } from "../lib/log";
+import { logChatTurn } from "../lib/log";
 
 interface Env {
   ANTHROPIC_API_KEY: string;
-  // Optional: visitor/chat logging. Absent in local dev without D1 → logging is skipped.
+  // Optional: anonymous usage counting. Absent in local dev without D1 → logging is skipped.
   LOGS_DB?: D1Database;
 }
 
@@ -78,31 +78,11 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env, waitUnti
     );
   }
 
-  // Tee the stream: one branch goes to the client, the other is consumed
-  // after the response returns to accumulate the assistant's reply for logging.
-  const [toClient, toLog] = upstream.body.tee();
+  // Count the turn (timestamp + anonymous session id only — no content).
+  const turn = capped.filter((m) => m.role === "user").length;
+  waitUntil(logChatTurn(env.LOGS_DB, sessionId, turn));
 
-  if (env.LOGS_DB) {
-    const lastUser = [...capped].reverse().find((m) => m.role === "user");
-    const turn = capped.filter((m) => m.role === "user").length;
-    const meta = clientMeta(request);
-    waitUntil(
-      readAssistantText(toLog).then((assistantMsg) =>
-        logChatTurn(env.LOGS_DB, {
-          sessionId,
-          turn,
-          userMsg: lastUser?.content || "",
-          assistantMsg,
-          meta
-        })
-      )
-    );
-  } else {
-    // No logging configured: drain the second branch so it doesn't backpressure.
-    void toLog.cancel();
-  }
-
-  return new Response(toClient, {
+  return new Response(upstream.body, {
     status: 200,
     headers: {
       "Content-Type": "text/event-stream",

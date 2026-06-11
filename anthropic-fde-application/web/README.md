@@ -10,9 +10,9 @@ Single-page Astro site for Bill's Anthropic FDE application. Password-gated, inc
   - `/_middleware.ts` — cookie-gates everything except `/`, `/api/login`, and static assets
   - `/api/login` — verifies password, issues HMAC-signed session cookie
   - `/api/logout` — clears the cookie
-  - `/api/chat` — streams from Anthropic API (Claude Sonnet 4.6), keyed on a server-side secret; logs each turn to D1
-  - `/api/admin/logs` — read-only activity dashboard, gated by the `ADMIN_KEY` secret
-- **Cloudflare D1** (`fde-williamrthomas-logs`) for first-party visitor + chat logging (schema in `schema.sql`)
+  - `/api/chat` — streams from Anthropic API (Claude Sonnet 4.6), keyed on a server-side secret; counts each turn in D1 (no content)
+  - `/api/admin/logs` — read-only usage dashboard, gated by the `ADMIN_KEY` secret
+- **Cloudflare D1** (`fde-williamrthomas-logs`) for anonymous usage counts (schema in `schema.sql`)
 
 ## Local dev
 
@@ -79,17 +79,18 @@ Dashboard → Pages → fde-williamrthomas → Custom domains → Add `fde.willi
 
 ## Tracking / activity log
 
-Logins and chatbot conversations are recorded to a Cloudflare D1 database
-(`fde-williamrthomas-logs`) so you can see whether anyone has been looking at
-the site and what they asked. Writes are best-effort and run *after* the
-response is returned (`waitUntil`), so logging never slows down or breaks a
-visitor's request. If the `LOGS_DB` binding is absent (e.g. local dev), logging
-is silently skipped.
+Anonymous usage counts are recorded to a Cloudflare D1 database
+(`fde-williamrthomas-logs`) so you can tell *whether* the site has been used —
+deliberately not who used it or what they said. No message content, no IPs,
+no user agents, no geo. Writes are best-effort and run *after* the response is
+returned (`waitUntil`), so logging never slows down or breaks a visitor's
+request. If the `LOGS_DB` binding is absent (e.g. local dev), logging is
+silently skipped.
 
 What's captured:
-- **Logins** — timestamp, success/failure, IP, country, user agent, referer.
-- **Chat turns** — timestamp, session id, turn number, the visitor's question,
-  the assistant's reply, IP, country.
+- **Logins** — timestamp + success/failure. Nothing else.
+- **Chat turns** — timestamp, a random per-conversation session id (generated
+  client-side, carries no identity), and the turn number. Nothing else.
 
 ### Viewing it
 
@@ -107,7 +108,7 @@ You can also query directly:
 
 ```bash
 wrangler d1 execute fde-williamrthomas-logs --remote \
-  --command "SELECT ts, country, user_msg FROM chat_log ORDER BY id DESC LIMIT 20"
+  --command "SELECT ts, session_id, turn FROM chat_log ORDER BY id DESC LIMIT 20"
 ```
 
 ### Binding setup
@@ -136,7 +137,7 @@ The chatbot's system prompt is in `functions/api/chat.ts` — **keep it in sync 
 - Password is verified server-side only. Login has a 500ms anti-bruteforce sleep on failure.
 - `noindex,nofollow` is set in the layout so it won't be indexed even if leaked.
 - API key never leaves the Cloudflare environment. The chat endpoint streams Anthropic responses back through the Worker; the client never sees the key.
-- No third-party tracking or analytics. Logins and chat conversations are logged first-party to your own Cloudflare D1 (see "Tracking / activity log"); nothing is sent to anyone but you. The activity dashboard is gated by a dedicated `ADMIN_KEY`, separate from the site password.
+- The site is privacy-mode-suitable for unannounced interviewer visits — no third-party tracking, no analytics. The only first-party record is anonymous usage counts in your own Cloudflare D1 (see "Tracking / activity log"): timestamps and random session ids, never content or identity. The usage dashboard is gated by a dedicated `ADMIN_KEY`, separate from the site password.
 
 ## Cost
 
